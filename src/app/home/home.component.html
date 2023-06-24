@@ -1,6 +1,20 @@
 <div class="container mt-5">
-    <h1 class="card">
-        This is home page
-
-    </h1>
+    <mat-grid-list cols="4" rowHeight="2:3" gutterSize="20">
+        <mat-grid-tile *ngFor="let p of productDetails">
+            <div class="row p-5">
+                <div class="image-container">
+                    <img class="home-page-product-image" [src]="p.productImages[0].url" alt="">
+                </div>
+                <div class="mt-3">
+                    <p><b>{{p.productName}}</b></p>
+                </div>
+                <div class="mt-3">
+                    <b>Rs. {{p.productActualPrice}}</b> &nbsp; <b style="text-decoration: line-through;color: gray;"> {{p.productDiscountedPrice}}</b>
+                </div>
+                <div class="mt-3 text-center">
+                    <button type="button" mat-raised-button color="warn" (click)="showProductDetails(p.productId)">View</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+      </mat-grid-list>
 </div>
