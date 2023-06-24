@@ -20,6 +20,7 @@ export class AddNewProductComponent implements OnInit {
     productActualPrice: 0,
     productImages: []
   }
+  getAllProducts: any;
 
   constructor(private productService: ProductService,
     private sanitizer: DomSanitizer) { }
@@ -28,12 +29,12 @@ export class AddNewProductComponent implements OnInit {
   }
 
   addProduct(productForm: NgForm) {
-
     const productFormData = this.prepareFormData(this.product);
 
     this.productService.addProduct(productFormData).subscribe(
       (Response: Product) => {
         productForm.reset();
+        this.product.productImages = [];
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -65,7 +66,7 @@ export class AddNewProductComponent implements OnInit {
 
       const fileHandle: FileHandle = {
         file: file,
-        url: this.sanitizer.bypassSecurityTrustHtml(
+        url: this.sanitizer.bypassSecurityTrustResourceUrl(
           window.URL.createObjectURL(file)
         )
 
@@ -79,5 +80,10 @@ export class AddNewProductComponent implements OnInit {
   removeImage(i: number) {
     this.product.productImages.splice(i, 1);
   }
+  fileDropped(fileHandle : FileHandle){
+    this.product.productImages.push(fileHandle);
+  }
+
+ 
 
 }

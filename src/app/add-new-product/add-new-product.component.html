@@ -34,8 +34,22 @@
             </div>
             <div class="col-6">
                 <div>
+                    <div class="dropzone"
+                    appDrag
+                    (files)="fileDropped($event)">
+                        <div class="text-wrapper"> 
+                        <div class="center">
+                                Drag and drop user file or 
+                                <a (click)="selectFile.click()" class="browse-button">browse</a> 
+                                a file
+                            </div>
+                        </div>
+                    </div>
+
+                
                 <input multiple
                      type="file" 
+                     style="display: none;"
                      #selectFile 
                      value="select" 
                      (change)="onFileSelected($event)">
