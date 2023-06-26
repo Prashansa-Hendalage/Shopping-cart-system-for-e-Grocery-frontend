@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../_model/product.model';
 import { OrderDetails } from '../_model/order-details.model';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  getProductDetails(isSingleProductCheckout: string | null, id: string | null): Product[] | import("rxjs").Observable<Product[]> | Promise<Product[]> {
+  getProductDetails(isSingleProductCheckout: string | null, id: string | null):import("rxjs").Observable<Product[]> {
+    console.log("running getProductDetails")
     throw new Error('Method not implemented.');
   }
 
@@ -36,6 +38,6 @@ export class ProductService {
   }
 
   public placeOrder(orderDetails: OrderDetails){
-    return this.httpClient.post("http://localhost:9090/placeOrder",orderDetails);
+    return this.httpClient.post("http://localhost:9090/placeOrder/",orderDetails);
   }
 }

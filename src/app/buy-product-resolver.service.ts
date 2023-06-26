@@ -13,15 +13,19 @@ export class BuyProductResolverService implements Resolve<Product[]>{
   constructor(private productService: ProductService,
     private imageProcessingService: ImageProcessingService) { }
 
-  resolve(route:ActivatedRouteSnapshot, state: RouterStateSnapshot): Product[] | Observable<Product[]> | Promise<Product[]>{
+  resolve(route:ActivatedRouteSnapshot, 
+    state: RouterStateSnapshot
+    ): Product[] | Observable<Product[]> | Promise<Product[]> {
     
     const id = route.paramMap.get("id");
     const isSingleProductCheckout = route.paramMap.get("isSingleProductCheckout");
     return this.productService.getProductDetails(isSingleProductCheckout,id)
-    .pipe(
+      .pipe( // dan hari balanna . mama return type eka venas kra getProductDetails meeke. observable ekak return venna hadamu ee function eka
+      //okay ??
+      
       map(
         (x: Product[], i) => x.map((product:Product) => this.imageProcessingService.createImages(product))
       )
-    );
+   );
   }
 }
