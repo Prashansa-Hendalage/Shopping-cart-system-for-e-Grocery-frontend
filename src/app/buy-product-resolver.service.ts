@@ -20,9 +20,7 @@ export class BuyProductResolverService implements Resolve<Product[]>{
     const id = route.paramMap.get("id");
     const isSingleProductCheckout = route.paramMap.get("isSingleProductCheckout");
     return this.productService.getProductDetails(isSingleProductCheckout,id)
-      .pipe( // dan hari balanna . mama return type eka venas kra getProductDetails meeke. observable ekak return venna hadamu ee function eka
-      //okay ??
-      
+      .pipe( 
       map(
         (x: Product[], i) => x.map((product:Product) => this.imageProcessingService.createImages(product))
       )

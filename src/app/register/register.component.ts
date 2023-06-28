@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit{
         this.router.navigate(['/login']);
       },
       (error) =>{
-        console.log(error);//hi mokadda case eka ???
+        console.log(error);
         
       }
     );

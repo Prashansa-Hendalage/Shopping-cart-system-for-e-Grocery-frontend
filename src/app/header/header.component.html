@@ -1,15 +1,15 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="bg-warning">
   <span>
     DenuwanStore
   </span>
   <span class="space-button"></span>
-  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" routerLink="login">Login</button>
-  <button *ngIf="isLoggedIn()" mat-raised-button color="primary" (click)="logout()">Logout</button>
+  <button *ngIf="! isLoggedIn()" mat-raised-button class="bg-warning" routerLink="login">Login</button>
+  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
-<mat-toolbar color="primary" *ngIf="isLoggedIn()">
-  <button mat-raised-button color="primary" routerLink="/">Home</button>
-  <button *ngIf="isAdmin()"  mat-raised-button color="primary" routerLink="/addNewProduct">Add New Product</button>
-  <button *ngIf="isAdmin()"  mat-raised-button color="primary" routerLink="/showProductDetails">Show Product details</button>
+<mat-toolbar class="bg-warning" *ngIf="isLoggedIn()">
+  <button mat-raised-button class="bg-warning" routerLink="/" style="color: white;font-size: 16px;">Home</button>
+  <button *ngIf="isAdmin()"  mat-raised-button class="bg-warning" routerLink="/addNewProduct"style="color: white;font-size: 16px;">Add New Product</button>
+  <button *ngIf="isAdmin()"  mat-raised-button class="bg-warning" routerLink="/showProductDetails" style="color: white;font-size: 16px;">Show Product details</button>
 </mat-toolbar>
 
 

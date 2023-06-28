@@ -57,14 +57,14 @@ export class BuyProductComponent implements OnInit {
     );
     return filteredProduct[0].quantity;
   }
-  getCalculatedTotal(productId: any,productDiscountedPrice: any){
+  getCalculatedTotal(productId: number,productDiscountedPrice: number){
     const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
       (productQuantity) => productQuantity.productId === productId
     );
     return filteredProduct[0].quantity*productDiscountedPrice;
   }
 
-  onQuantityChanged(q: any,productId: any){
+  onQuantityChanged(q: any,productId: number){
     this.orderDetails.orderProductQuantityList.filter(
       (orderProduct) => orderProduct.productId === productId
     )[0].quantity = q;

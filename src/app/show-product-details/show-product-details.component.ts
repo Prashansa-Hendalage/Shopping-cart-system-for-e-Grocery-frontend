@@ -15,9 +15,11 @@ import { Router } from '@angular/router';
 })
 export class ShowProductDetailsComponent implements OnInit{
 
+  showLoadMoreProductButton = false;
+  showTable = false;
   productDetails: Product[] = [];
   displayedColumns: string[] = ['Product Id', 'Product Name', 'description', 'Product Discounted Price','Product Actual Price','Actions'];
-
+  pageNumber: number =0;
 
   constructor(private productService: ProductService,
     public imagesDialog:MatDialog,
@@ -31,15 +33,33 @@ export class ShowProductDetailsComponent implements OnInit{
     this.getAllProducts();
   }
 
-  public getAllProducts(){
-    this.productService.getAllProducts()
+  searchByKeyword(searchkeyword: any){
+    console.log(searchkeyword);
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchkeyword);
+  }
+
+
+  public getAllProducts(searchkeyword:string = ""){
+    this.showTable = false;
+    this.productService.getAllProducts(this.pageNumber,searchkeyword)
     .pipe(
       map((x: Product[],i)=>x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
     .subscribe(
       (resp:Product[]) =>{
-        console.log(resp);
-        this.productDetails = resp;
+        //console.log(resp);
+        resp.forEach(product =>this.productDetails.push(product));
+        console.log(this.productDetails);
+        this.showTable =true;
+
+        if(resp.length == 12){
+          this.showLoadMoreProductButton = true;
+        }else{
+          this.showLoadMoreProductButton = false;
+        }
+        // this.productDetails = resp;
       },
       (error:HttpErrorResponse) =>{
         console.log(error);
@@ -47,6 +67,12 @@ export class ShowProductDetailsComponent implements OnInit{
       
     );
   }
+
+  loadMoreProduct(){
+    this.pageNumber = this.pageNumber+1;
+    this.getAllProducts();
+  }
+
  //deleteProduct(productId){
    // this.productService.deleteProduct(productId).subscribe()
  // }
