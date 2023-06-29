@@ -19,7 +19,16 @@ export class BuyProductResolverService implements Resolve<Product[]>{
     
     const id = route.paramMap.get("id");
     const isSingleProductCheckout = route.paramMap.get("isSingleProductCheckout");
-    return this.productService.getProductDetails(isSingleProductCheckout,id)
+    if (id === null) {
+      // Handle the case where id is null
+      // You can provide a default value or return an error
+      // For example:
+      throw new Error("ID parameter is missing."); // Throw an error
+    }
+
+    const productId = Number(id); // Convert id to a number
+
+    return this.productService.getProductDetails(isSingleProductCheckout,productId)
       .pipe( 
       map(
         (x: Product[], i) => x.map((product:Product) => this.imageProcessingService.createImages(product))

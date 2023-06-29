@@ -11,7 +11,7 @@ import { ImageProcessingService } from './image-processing.service';
 })
 export class ProductResolveService implements Resolve <Product> {
 
-  constructor(private productService:ProductService,
+  constructor(private productService: ProductService,
     private imageProcessingService: ImageProcessingService
     ) { }
 
@@ -22,7 +22,7 @@ export class ProductResolveService implements Resolve <Product> {
     const id = route.paramMap.get("productId");
 
     if(id){
-      //then we have to fetch details from backend
+      //fetch details from backend
       return this.productService.getProductDetailsById(parseInt(id))
       .pipe(
         map(p => this.imageProcessingService.createImages(p))

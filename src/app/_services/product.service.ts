@@ -8,10 +8,10 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ProductService {
-  getProductDetails(isSingleProductCheckout: string | null, id: string | null):import("rxjs").Observable<Product[]> {
-    console.log("running getProductDetails")
-    throw new Error('Method not implemented.');
-  }
+  // getProductDetails(isSingleProductCheckout: string | null, id: string | null):import("rxjs").Observable<Product[]> {
+  //   console.log("running getProductDetails")
+  //   throw new Error('Method not implemented.');
+ // }
 
   constructor(private httpClient: HttpClient) { 
     
@@ -33,11 +33,19 @@ export class ProductService {
 
   }
 
-  public getProductDeails(isSingleProductCheckout: any,productId: number){
+  public getProductDetails(isSingleProductCheckout: any,productId: number){
     return this.httpClient.get<Product[]>("http://localhost:9090/getProductDetails/"+isSingleProductCheckout+"/"+productId);
   }
 
-  public placeOrder(orderDetails: OrderDetails){
-    return this.httpClient.post("http://localhost:9090/placeOrder/",orderDetails);
+  public placeOrder(orderDetails: OrderDetails,isCartCheckout: any){
+    return this.httpClient.post("http://localhost:9090/placeOrder/"+ isCartCheckout,orderDetails);
+  }
+
+  public addToCart(productId: number){
+    return this.httpClient.get("http://localhost:9090/addToCart/"+productId);
+  }
+
+  public getCartDetails(){
+    return this.httpClient.get("http://localhost:9090/getCartDetails")
   }
 }
