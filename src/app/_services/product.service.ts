@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../_model/product.model';
 import { OrderDetails } from '../_model/order-details.model';
 import { Observable } from 'rxjs/internal/Observable';
+import { MyOrderDetails } from '../_model/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,16 @@ export class ProductService {
   //   throw new Error('Method not implemented.');
  // }
 
-  constructor(private httpClient: HttpClient) { 
-    
+  constructor(private httpClient: HttpClient) {  }
+
+  public getMyOrders(): Observable<MyOrderDetails[]>{
+    return this.httpClient.get<MyOrderDetails[]>("http://localhost:9090/getOrderDetails");
   }
+
+  public deleteCartItem(cartId: any){
+    return this.httpClient.delete("http://localhost:9090/deleteCartItem/"+cartId);
+  }
+
   public addProduct(product: FormData){
     return this.httpClient.post<Product>("http://localhost:9090/addNewProduct",product);
   }

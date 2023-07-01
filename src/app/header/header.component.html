@@ -9,6 +9,7 @@
 <mat-toolbar class="bg-warning" *ngIf="isLoggedIn()">
   <button mat-raised-button class="bg-warning" routerLink="/" style="color: white;font-size: 16px;">Home</button>
   <button *ngIf="!isAdmin()"  mat-raised-button class="bg-warning" routerLink="/cart"style="color: white;font-size: 16px;">Cart</button>
+  <button *ngIf="!isAdmin()"  mat-raised-button class="bg-warning" routerLink="/myOrders"style="color: white;font-size: 16px;">My Orders</button>
   <button *ngIf="isAdmin()"  mat-raised-button class="bg-warning" routerLink="/addNewProduct"style="color: white;font-size: 16px;">Add New Product</button>
   <button *ngIf="isAdmin()"  mat-raised-button class="bg-warning" routerLink="/showProductDetails" style="color: white;font-size: 16px;">Show Product details</button>
 </mat-toolbar>
