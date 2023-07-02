@@ -1,33 +1,72 @@
-<div class="container  mt-5">
+<div class="container  mt-5 mb-5">
     <div class="card p-3">
-        <div class="row">
+        <div class="row ">
             <div class="col-6">
                 <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Full Name</mat-label>
-                        <input matInput placeholder="Full Name" [(ngModel)]="orderDetails.fullName" name="fullName">
-                    </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="w-100">
+                    <!--Full name-->
+                    <mat-form-field appearance="outline" class="w-100 mb-4">
+                        <mat-label>Full Name</mat-label>
+                        <input matInput placeholder="Full Name" [(ngModel)]="orderDetails.fullName" name="fullName"
+                            required minlength="6">
+                                 <!-- Add a validation message for required -->
+                        <mat-error *ngIf="orderForm.controls['fullName']?.errors?.['required']">Full name is
+                            required</mat-error>
+                        </mat-form-field>
+
+                    <!--Full address-->
+                    <mat-form-field appearance="outline" class="w-100 mb-4">
                         <mat-label>Full Address</mat-label>
                         <input matInput placeholder="Full Address" [(ngModel)]="orderDetails.fullAddress"
-                            name="fullAddress">
+                            name="fullAddress" required>
+                                <!-- Add a validation message for required -->
+                        <mat-error *ngIf="orderForm.controls['fullAddress']?.errors?.['required']">Address is
+                            required</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="w-100">
+                    <!--Contact Number-->
+                    <mat-form-field appearance="outline" class="w-100 mb-5">
                         <mat-label>Contact Number</mat-label>
                         <input matInput placeholder="Contact Number" [(ngModel)]="orderDetails.contactNumber"
-                            name="contactNumber">
+                            name="contactNumber" required pattern="^[0-9]*$" minlength="10" maxlength="10">
+                        <mat-error *ngIf="orderForm.controls['contactNumber'].errors?.['required']">
+                            Contact Number is required
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['contactNumber'].errors?.['pattern']">
+                            Invalid Contact Number. Please enter only numeric values.
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['contactNumber'].errors?.['minlength']">
+                            Contact Number must be 10 digits long.
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['contactNumber'].errors?.['maxlength']">
+                            Contact Number must be 10 digits long.
+                        </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="w-100">
+
+
+                    <!--Alternate Contact Number-->
+                    <mat-form-field appearance="outline" class="w-100 mb-5">
                         <mat-label>Alternate Contact Number</mat-label>
-                        <input matInput placeholder="Alternate Contact Number" [(ngModel)]="orderDetails.alternateContactNumber"
-                            name="alternateContactNumber">
+                        <input matInput placeholder="Alternate Contact Number"
+                            [(ngModel)]="orderDetails.alternateContactNumber" name="alternateContactNumber" required
+                            pattern="^[0-9]*$" minlength="10" maxlength="10">
+                        <mat-error *ngIf="orderForm.controls['alternateContactNumber'].errors?.['required']">
+                            Alternate Contact Number is required
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['alternateContactNumber'].errors?.['pattern']">
+                            Invalid Alternate Contact Number. Please enter only numeric values.
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['alternateContactNumber'].errors?.['minlength']">
+                            Alternate Contact Number must be 10 digits long.
+                        </mat-error>
+                        <mat-error *ngIf="orderForm.controls['alternateContactNumber'].errors?.['maxlength']">
+                            Alternate Contact Number must be 10 digits long.
+                        </mat-error>
                     </mat-form-field>
 
                     <div align="right">
-                        <button type="submit" mat-stroked-button color="warn">Place Order</button>
+                        <button type="submit" mat-raised-button color="warn">Place Order</button>
                     </div>
                 </form>
 
@@ -45,34 +84,36 @@
                     <tbody class="tbody">
                         <tr *ngFor="let product of productDetails">
                             <td>{{product.productName}}</td>
-                            <td>{{product.productDiscountedPrice}}</td>
+                            <td>Rs. {{product.productDiscountedPrice}}.00</td>
                             <td>
-                                <select 
-                                #quantity
-                                class="form-select"
-                                [ngModel]="getQuantityForProduct(product.productId)"
-                                (change)="onQuantityChanged(quantity.value,product.productId)">
+                                <select #quantity class="form-select"
+                                    [ngModel]="getQuantityForProduct(product.productId)"
+                                    (change)="onQuantityChanged(quantity.value,product.productId)">
 
-                                    <option value="1">1</option><option value="2">2</option>
-                                    <option value="3">3</option><option value="4">4</option>
-                                    <option value="5">5</option><option value="6">6</option>
-                                    <option value="7">7</option><option value="8">8</option>
-                                    <option value="9">9</option><option value="10">10</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
                                 </select>
                             </td>
-                            <td>
-                                {{getCalculatedTotal(product.productId,product.productDiscountedPrice)}}
+                            <td>Rs. {{getCalculatedTotal(product.productId,product.productDiscountedPrice)}}.00
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td>Total </td>
-                            <td>{{getCalculatedGrandTotal()}}</td>
+                            <td>Rs. {{getCalculatedGrandTotal()}}.00</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>         
+            </div>
         </div>
     </div>
 </div>

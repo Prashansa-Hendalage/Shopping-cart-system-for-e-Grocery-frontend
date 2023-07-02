@@ -1,0 +1,24 @@
+.banner{
+    background-image: url("../../assets/images/banner2.png");
+    
+    background-position: center top;
+    background-size: cover;
+}
+
+
+.banner h1{
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+.content a{
+    text-decoration: none;
+    background-color:orangered;
+    padding: 6px 6px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10px;
+    
+}

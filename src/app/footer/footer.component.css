@@ -1,12 +1,10 @@
-.space-button{
-    flex:11 auto;
-}
-button{
-    color:white
-}
-h3{
+h5{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: italic;
-    font-size: 30px;
-    
+}
+.footer{
+    overflow: hidden;
+    position: sticky;
+    top: 100%;
+   
 }

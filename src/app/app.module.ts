@@ -9,7 +9,7 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
@@ -34,6 +34,10 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { FooterComponent } from './footer/footer.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 @NgModule({
@@ -54,7 +58,10 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     OrderConfirmationComponent,
     RegisterComponent,
     CartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    OrderDetailsComponent,
+    FooterComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +77,9 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     MatGridListModule,
     MatTableModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonToggleModule,
+    ReactiveFormsModule
 
   ],
   providers: [

@@ -1,49 +1,59 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5 w-50">
     <div class="card" style="padding: 20px;">
         <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 mt-3 mb-3">
                 <mat-label>Username</mat-label>
                 <input matInput
                 ngModel
                 name="userName" 
                 id="userName"
-                placeholder="userName">
+                placeholder="userName"required minlength="3">
+                <!-- Add a validation message for required -->
+               <mat-error *ngIf="registerForm.controls['userName']?.errors?.['required']">Username is required</mat-error>
+               <mat-error *ngIf="registerForm.controls['userName']?.errors?.['minlength']">Username must be at least 3 characters long.</mat-error>
             </mat-form-field>
             <br>
 
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
                 <mat-label>FirstName</mat-label>
                 <input matInput
                 ngModel
                 name="userFirstName" 
                 id="userFirstName"
-                placeholder="FirstName">
+                placeholder="FirstName"required >
+                <!-- Add a validation message for required -->
+                <mat-error *ngIf="registerForm.controls['userFirstName']?.errors?.['required']">First name is required</mat-error>
             </mat-form-field>
             <br>
 
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
                 <mat-label>LastName</mat-label>
                 <input matInput
                 ngModel
                 name="userLastName" 
                 id="userLastName"
-                placeholder="LastName">
+                placeholder="LastName" required >
+                <!-- Add a validation message for required -->
+                <mat-error *ngIf="registerForm.controls['userLastName']?.errors?.['required']">Last name is required</mat-error>
             </mat-form-field>
             <br>
 
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
                 <mat-label>Password</mat-label>
                 <input matInput
                 ngModel
                 name="userPassword" 
                 id="userPassword"
-                placeholder="Password">
+                placeholder="Password"required minlength="6">
+                <!-- Add a validation message for required -->
+                <mat-error *ngIf="registerForm.controls['userPassword']?.errors?.['required']">Password is required</mat-error>
+                <mat-error *ngIf="registerForm.controls['userPassword']?.errors?.['minlength']">Password must be at least 6 characters long.</mat-error>
             </mat-form-field>
             <br>
 
     
             <div class="text-center">
-                <button type="submit" mat-raised-button  color="warn"  >Register</button>
+                <button type="submit" mat-raised-button  color="warn" class="w-20" >Register</button>
             </div>
           
         </form>

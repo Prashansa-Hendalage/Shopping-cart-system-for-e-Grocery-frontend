@@ -16,46 +16,53 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
-  {path:'admin', component:AdminComponent,canActivate:[AuthGuard],data:{roles:['Admin']}},
-  {path:'user', component:UserComponent ,canActivate:[AuthGuard],data:{roles:['User']}},
-  {path:'login', component:LoginComponent},
-  {path:'forbidden', component:ForbiddenComponent},
-  {path:'addNewProduct',component:AddNewProductComponent,canActivate:[AuthGuard],data:{roles:['Admin']},
-  resolve:{
-    product: ProductResolveService
+  { path: '', component: HomeComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
+  { path: 'login', component: LoginComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
+  {path: 'AboutUs',component:AboutusComponent},
+  {
+    path: 'addNewProduct', component: AddNewProductComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] },
+    resolve: {
+      product: ProductResolveService
+    },
   },
-},
-  {path:'showProductDetails',component:ShowProductDetailsComponent,canActivate:[AuthGuard],data:{roles:['Admin']},
-},
-  {path:'productViewDetails',component:ProductViewDetailsComponent,
-  
-  resolve:{
-    product: ProductResolveService
+  {
+    path: 'showProductDetails', component: ShowProductDetailsComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] },
   },
-},
-  {path:'buyProduct',component:BuyProductComponent,canActivate:[AuthGuard],data:{roles:['User']},
-  resolve:{
-    productDetails: BuyProductResolverService,
+  {
+    path: 'orderInformation', component: OrderDetailsComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] },
   },
-},
+  {
+    path: 'productViewDetails', component: ProductViewDetailsComponent,
+    resolve: {
+      product: ProductResolveService
+    },
+  },
+  {
+    path: 'buyProduct', component: BuyProductComponent, canActivate: [AuthGuard], data: { roles: ['User'] },
+    resolve: {
+      productDetails: BuyProductResolverService,
+    },
+  },
 
-{path:'cart',component:CartComponent,canActivate:[AuthGuard],data:{roles:['User']}
-},
-{  path:"orderConfirm",component:OrderConfirmationComponent,
-  canActivate:[AuthGuard],
-  data:{roles:["User"]}
-},
-{
-  path:"register",
-  component:RegisterComponent
-},
-{  path:"myOrders",component:MyOrdersComponent,
-  canActivate:[AuthGuard],
-  data:{roles:["User"]}
-}
+  {
+    path: 'cart', component: CartComponent, canActivate: [AuthGuard], data: { roles: ['User'] }
+  },
+  {
+    path: "orderConfirm", component: OrderConfirmationComponent,canActivate: [AuthGuard],data: { roles: ["User"] }
+  },
+  {
+    path: "register",component: RegisterComponent
+  },
+  {
+    path: "myOrders", component: MyOrdersComponent,canActivate: [AuthGuard],data: { roles: ["User"] }
+  }
 
 ];
 

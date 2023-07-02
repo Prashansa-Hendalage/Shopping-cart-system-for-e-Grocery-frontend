@@ -26,6 +26,7 @@ export class ProductViewDetailsComponent implements OnInit{
     this.productService.addToCart(productId).subscribe(
       (response)=>{
         console.log(response);
+        this.router.navigate(['/cart']);
       },
       (error) =>{
         console.log(error);

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgForm, Validators } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
@@ -9,13 +9,15 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
-  
+export class LoginComponent implements OnInit{
 
-  constructor(private userService: UserService,
+   constructor(private userService: UserService,
     private userAuthService:UserAuthService,
     private router: Router){}
 
+    ngOnInit(): void {
+    }
+  
 
   login(loginForm:NgForm){
     this.userService.login(loginForm.value).subscribe(
@@ -35,6 +37,7 @@ export class LoginComponent{
       },
       (error)=>{
         console.log(error);
+        alert('Incorret username or password');
       }
     );
   }
