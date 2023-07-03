@@ -38,6 +38,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FooterComponent } from './footer/footer.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     MatIconModule,
     MatDialogModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
 
   ],
   providers: [
