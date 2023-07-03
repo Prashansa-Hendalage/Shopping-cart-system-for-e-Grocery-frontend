@@ -16,6 +16,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {  }
 
+
+
   public markAsDelivered(orderId: any){
     return this.httpClient.get("http://localhost:9090/markOrderAsDelivered/"+orderId);
   }
@@ -64,4 +66,9 @@ export class ProductService {
   public getCartDetails(){
     return this.httpClient.get("http://localhost:9090/getCartDetails")
   }
+
+  public getAdminData(){
+    return this.httpClient.get("http://localhost:9090/getAdminData")
+  }
 }
+

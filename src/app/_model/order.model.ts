@@ -10,4 +10,6 @@ export interface MyOrderDetails{
     orderAmount:number;
     product: Product;
     user: any;
+    deliveredDateTime:any;
+    createDateTime:any;
 }

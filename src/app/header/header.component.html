@@ -11,8 +11,11 @@
   <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
 <mat-toolbar class="bg-warning justify-content-center"  *ngIf="isLoggedIn()" >
+
   <button mat-raised-button class="bg-warning " routerLink="/" style="color: white;font-size: 20px;">Home</button>
   &nbsp;&nbsp;
+  <button *ngIf="isAdmin()"  mat-raised-button class="bg-warning" routerLink="/admin" style="color: white;font-size: 20px;">Dashboard</button>
+
   <button *ngIf="!isAdmin()"  mat-raised-button class="bg-warning " routerLink="/cart"style="color: white;font-size: 20px;"><i class="bi bi-cart2 "></i> Cart </button>
   &nbsp;&nbsp;
   <button *ngIf="!isAdmin()"  mat-raised-button class="bg-warning " routerLink="/myOrders"style="color: white;font-size: 20px;"><i class="bi bi-bag-heart"></i> My Orders</button>

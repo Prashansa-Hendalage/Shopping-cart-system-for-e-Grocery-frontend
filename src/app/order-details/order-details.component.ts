@@ -8,7 +8,7 @@ import { ProductService } from '../_services/product.service';
 })
 export class OrderDetailsComponent implements OnInit {
 
-  displayedColumns = ["Id","Product Name","Name","Address","Contact No.","Status","Action"];
+  displayedColumns = ["Id","Product Name","Name","Address","Contact No.","Status","createDateTime","deliveredDateTime","Action"];
   allOrdersDetails:any=[];
   status:string = 'All';
 
@@ -41,4 +41,5 @@ export class OrderDetailsComponent implements OnInit {
       }
     );
   }
+  
 }
